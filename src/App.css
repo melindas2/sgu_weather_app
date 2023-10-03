@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url("assets/font/Roboto/Roboto-Light.ttf");
+}
+
+body{
+  background-image: url(assets/photo/default.jpg); 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.container{
+  text-align: center;
+  font-family: Roboto;
+  max-width: 50%;
+  margin-top: 50px;
+}
+
+.tombol{
+  margin-top: 10px;
+}
+
+
+.centerContainer1{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.centerContainer2{
+  background-color: rgba(255,255,255, 0.5);
+}
+
+.spacer{
+  height: 20px;
+}
+
+th{
+  text-align: left;
+  padding-left: 50px;
+}
+
+.td1{
+  text-align: right;
+}
+
+.spinner{
+  z-index: 1031;
+  margin-right: auto;
+  margin-left: auto;
+}
