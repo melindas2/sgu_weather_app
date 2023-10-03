@@ -15,7 +15,9 @@ function App() {
             <tr>
                 <td>
                     <input id="cityNameTextField"type="text" class="form-control" name="cityName"/>
-                    <button id="submitbutton" class="tombol btn btn-primary btn-sm" value="Search" onclick="submitAction()">Search</button>
+                    <button onClick={()=>{
+                        alert("This function is not available yet")
+                    }} id="submitbutton" class="tombol btn btn-primary btn-sm" value="Search" onclick="submitAction()">Search</button>
                 </td>
             </tr>
         </table>
