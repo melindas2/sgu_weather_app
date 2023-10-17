@@ -1,8 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import Button from 'react-bootstrap/Button';
+import { useEffect, useState } from "react";
 
 function App() {
+    const [cityInput, setCityInput] = useState("");
+    useEffect(()=>{
+        console.log(cityInput);
+    }, [cityInput]);
   return (
     <div class="container">
         <h1>Weather App</h1>
@@ -14,7 +19,13 @@ function App() {
             </tr>
             <tr>
                 <td>
-                    <input id="cityNameTextField"type="text" class="form-control" name="cityName"/>
+                    <input id="cityNameTextField"
+                    type="text" 
+                    class="form-control" 
+                    name="cityName" onChange={(event)=>{
+                        console.log(event.target.value);
+                    }}
+                    />
                     <button onClick={()=>{
                         alert("This function is not available yet")
                     }} id="submitbutton" class="tombol btn btn-primary btn-sm" value="Search" onclick="submitAction()">Search</button>
