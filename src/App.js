@@ -2,9 +2,11 @@ import logo from './logo.svg';
 import './App.css';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from "react";
+import useGetWeather from './assets/hooks/useGetWeather';
 
 function App() {
     const [cityInput, setCityInput] = useState("");
+    const { data: weatherData, getWeather} = useGetWeather();
 
     // listens on changes in city and then performs the function as intended
     // this hook depends on the deps variable to rin the func
@@ -23,6 +25,14 @@ function App() {
         console.log("Everything else is updated");
     });
 
+    const onSubmitButtonClicked = () =>{
+        getWeather(cityInput);
+    };
+
+    useEffect(()=>{
+        console.log(weatherData);
+    },[weatherData]); 
+
   return (
     <div class="container">
         <h1>Weather App</h1>
@@ -37,13 +47,14 @@ function App() {
                     <input id="cityNameTextField"
                     type="text" 
                     class="form-control" 
-                    name="cityName" onChange={(event)=>{
-                        console.log(event.target.value);
+                    name="cityName" 
+                    value={cityInput}
+                    onChange={(event)=>{
+                        setCityInput(event.target.value);
                     }}
                     />
-                    <button onClick={()=>{
-                        alert("This function is not available yet")
-                    }} id="submitbutton" class="tombol btn btn-primary btn-sm" value="Search" onclick="submitAction()">Search</button>
+                    <button onClick={onSubmitButtonClicked}
+                     id="submitbutton" type='submit' class="tombol btn btn-primary btn-sm" value="Search" onclick="submitAction()">Search</button>
                 </td>
             </tr>
         </table>
@@ -57,19 +68,19 @@ function App() {
             <span class="sr-only">Loading...</span>
         </div>
         </div>
-        <div id="weatherInfoComponent" style={{display: "none"}}>
+        <div id="weatherInfoComponent" style={{display: "flex"}}>
         <table class="centerContainer2 table">
             <tr>
                 <th>Weather</th> 
-                <td id = "weatherField" class="td1">0</td>
+                <td id = "weatherField" class="td1"></td>
             </tr>
             <tr>
                 <th>Temperature</th> 
-                <td id = "temperatureField" class="td1">0</td>
+                <td id = "temperatureField" class="td1">{weatherData?.main?.temp ?? "-"}</td>
             </tr>
             <tr>
                 <th>Feels like</th>
-                <td id="feelsLikeField" class="td1">0</td>
+                <td id="feelsLikeField" class="td1">{weatherData?.main?.temp ?? "-"}</td>
             </tr>
             <tr>
                 <th>Humidity</th>

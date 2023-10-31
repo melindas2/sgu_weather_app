@@ -7,7 +7,8 @@ export const GlobalProvider = ({ children }) => {
 
     const updateState = useCallback((updatedState) => {
         setState((prevState) => ({
-
+            ...prevState,
+            ...updatedState,
         }));
     }, []);
 
