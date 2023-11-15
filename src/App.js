@@ -2,10 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from "react";
-import useGetWeather from './assets/hooks/useGetWeather';
+import useGetWeather from './hooks/useGetWeather';
+import useCityStorage from './hooks/useCityStorage';
 
 function App() {
     const [cityInput, setCityInput] = useState("");
+    const { cities, getStorage, setStorage } = useCityStorage();
     const { data: weatherData, getWeather} = useGetWeather();
 
     // listens on changes in city and then performs the function as intended
@@ -25,8 +27,11 @@ function App() {
         console.log("Everything else is updated");
     });
 
+    // const {setStorage} = useCityStorage();
+
     const onSubmitButtonClicked = () =>{
         getWeather(cityInput);
+        setStorage(cityInput);
     };
 
     useEffect(()=>{
@@ -76,19 +81,19 @@ function App() {
             </tr>
             <tr>
                 <th>Temperature</th> 
-                <td id = "temperatureField" class="td1">{weatherData?.main?.temp ?? "-"}</td>
+                <td id = "temperatureField" class="td1">{`${weatherData?.main?.temp ?? "-"}°C`}</td>
             </tr>
             <tr>
                 <th>Feels like</th>
-                <td id="feelsLikeField" class="td1">{weatherData?.main?.temp ?? "-"}</td>
+                <td id="feelsLikeField" class="td1">{`${weatherData?.main?.feels_like ?? "-"}°C`}</td>
             </tr>
             <tr>
                 <th>Humidity</th>
-                <td id="humidityField" class="td1">0</td>
+                <td id="humidityField" class="td1">{`${weatherData?.main?.humidity ?? "-"}%`}</td>
             </tr>
             <tr>
                 <th>Atmospheric Pressure</th>
-                <td id="pressureField" class="td1">0</td>
+                <td id="pressureField" class="td1">{`${weatherData?.main?.pressure ?? "-"}hPa`}</td>
             </tr>
         </table>
         </div>
